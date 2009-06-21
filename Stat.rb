@@ -155,9 +155,9 @@ class PitchingStat < BaseStat
     def_stat :XBA, :extraBaseHitAllowed
 
 
-    def_stat :AVG, :opponentsBattingAverage do hit / battersFaced end # not precise
-    def_stat :BB9, :walksPerNineInnings do baserunnersPer9Innings / inningPitched * 9 end
-    def_stat :BF, :battersFaced do inningPitched * 3 + hit + baseOnBall + hitBatsmen end # + number of batters that reached base on error against the pitcher
+    def_stat :AVG, :opponentsBattingAverage do hit / batterFaced end # not precise
+    def_stat :BB9, :walksPerNineInnings do baserunnerPer9Innings / inningPitched * 9 end
+    def_stat :BF, :batterFaced do inningPitched * 3 + hit + baseOnBall + hitBatsmen end # + number of batters that reached base on error against the pitcher
     def_stat :ERA, :earnedRunAverage do earnedRun / inningPitched * 9 end
     def_stat :GO_AO, :groundOutFlyOutRatio do groundOut / flyOut end
     def_stat :H9, :hitPerNineInnings do hit / inningPitched * 9 end
@@ -165,11 +165,11 @@ class PitchingStat < BaseStat
     def_stat :K_9, :strikeOutsPerNineInnings do strikeOut / inningPitched * 9 end
     def_stat :K_BB, :strikeOutOverWalkRatio do strikeOut / baseOnBall end
     def_stat :LIPS, :lateInningPressureSituations # The batting average allowed by the pitcher to opposing hitters in Late Inning Pressure Situations, which is any at-bat in the seventh inning or later, with the batting team either leading by one run, tied, or has the potential tying run on base, at bat, or on deck.
-    def_stat :MB_9, :baserunnersPer9Innings do (hit + baseOnBall) / inningPitched * 9 end
-    def_stat :OBA, :onBaseAgainst do (hit + baseOnBall + hitBatsmen) / battersFaced end # not precisely
+    def_stat :MB_9, :baserunnerPer9Innings do (hit + baseOnBall) / inningPitched * 9 end
+    def_stat :OBA, :onBaseAgainst do (hit + baseOnBall + hitBatsmen) / batterFaced end # not precisely
 #    def_stat :P_GS, :pitchesPerStart
     def_stat :P_IP, :pitchesPerInningsPitched do numberOfPitchThrown / inningPitched end
-    def_stat :SLG, :sluggingPercentage do totalBase / battersFaced end # not precise
+    def_stat :SLG, :sluggingPercentage do totalBase / batterFaced end # not precise
     def_stat :WHIP, :walksPlusHitsOverInningsPitched do (hit + baseOnBall) / inningPitched end 
     def_stat :WPCT, :winningPercentage do win / (win + loss) end
 end
