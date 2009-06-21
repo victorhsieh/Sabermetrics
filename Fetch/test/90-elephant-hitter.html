@@ -1,0 +1,573 @@
+
+<html>
+<head>
+<META NAME="robots" CONTENT="noindex,nofollow">
+<meta http-equiv="Content-Language" content="zh-tw">
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>歡迎光臨2009中華職棒大聯盟全球資訊網 The Official Site of CPBL </title>
+
+<!-- include menu javascript -->
+<script language=javascript src=../include/Menu.js></script>
+
+<script language=javascript>
+function login() {
+   if (document.loginform.UID.value == "") {
+      alert("請輸入帳號");
+      document.loginform.UID.focus();
+      return false;
+   }
+   if (document.loginform.UPW.value == "") {
+      alert("請輸入密碼");
+      document.loginform.UPW.focus();
+      return false;
+   }   
+   document.loginform.act.value = "cpbllogin";
+   document.loginform.submit();
+}
+
+
+function logout() {
+   document.loginform.act.value = "cpbllogout";
+   document.loginform.submit();
+}
+</script>
+</head>
+<body topmargin="0" leftmargin="0" background="../images/bg/GresultBG.gif">
+
+<style>
+     TABLE { FONT: 9pt 新細明體;}
+     BODY { FONT: 9pt 新細明體;} 
+ #flash {			
+			position:relative;
+		}           
+</style>
+
+<center>
+
+<table border="0" cellpadding="0" cellspacing="0" width="1002">
+<tr><td colspan="3" background="../images/bg/TopBG.gif">
+
+	<table border="0" cellspacing="0" width="1002" cellpadding="0">
+	<tr><td valign=bottom width=480>
+	<!---今日日期---->
+		<script language="JavaScript">
+var vn="Microsoft Internet Explorer";
+var some;
+if(navigator.appName!=vn)
+some="11";
+else
+some="1911";
+
+var enabled = 0; today = new Date();
+var day; var date;
+if(today.getDay()==0) day = "星期日"
+if(today.getDay()==1) day = "星期一"
+if(today.getDay()==2) day = "星期二"
+if(today.getDay()==3) day = "星期三"
+if(today.getDay()==4) day = "星期四"
+if(today.getDay()==5) day = "星期五"
+if(today.getDay()==6) day = "星期六"
+document.fgColor = "000000";
+date = " 中華民國 " + (today.getYear()-some) + " 年 " + (today.getMonth() + 1 ) + " 月 " + today.getDate() + " 日 " + day +"";
+document.write("<TABLE BORDER=0 cellspacing=0 cellpadding=0><TR><TD><FONT COLOR=545454>")
+document.write(date.fontsize(2));
+document.write("</FONT></TD><TR></TABLE>")
+    </script> 
+	</td>
+	<td align="right" width=522>
+	<!---六球團--->
+	<map name="teams">
+	<area alt="統一7-ELEVEn獅" coords="0, 0, 102, 17" shape="rect" href="../Teams/TeamBase.aspx?Tno=L01">
+	<area alt="LaNew熊" coords="107, 0, 168, 17" shape="rect" href="../Teams/TeamBase.aspx?Tno=A02">
+	<area alt="兄弟象" coords="172, 0, 216, 17" shape="rect" href="../Teams/TeamBase.aspx?Tno=E01">
+	<area alt="興農牛" coords="217, 0, 263, 17" shape="rect" href="../Teams/TeamBase.aspx?Tno=B02">	
+	<area alt="統一二軍" coords="266, 0, 323, 17" shape="rect" href="../Teams/Team2Players.aspx?Tno=L02">
+	<area alt="LaNEW熊二軍" coords="325, 0, 399, 17" shape="rect" href="../Teams/Team2Players.aspx?Tno=AA1">
+	<area alt="兄弟二軍" coords="402, 0, 460, 17" shape="rect" href="../Teams/Team2Players.aspx?Tno=EE1">
+	<area alt="興農二軍" coords="463, 0, 520, 17" shape="rect" href="../Teams/Team2Players.aspx?Tno=BA1"></map>	
+	<img border="0" src="../images/ico/TeamIcon.gif" usemap="#teams"></td></tr>
+	</table>
+
+</td></tr>
+<tr><td align=middle rowspan="2" width=175 background="../images/bg/LogoBG1.gif">
+	<!--CPBL LOGO及年度口號動畫 --->
+	<a href="../"><img src="../images/bg/2009Logo.gif" border=0 ></a></td>
+	<td background="../images/bg/TitleBG.gif" align="right" width="824" colspan="2"><img border="0" src="../images/hd/title.gif" ></td></tr>
+<tr><td width="824" colspan="2" align=right>
+	<!---最上方選單--->
+	<table id="menugroup1" border="0" cellpadding="0" cellspacing="0" onMouseOut="if (document.readyState == 'complete') mcMouseOutGroup(event,'menugroup1', null, null);" style="z-index:999;">
+    	<tr>
+			<td><a href="../fans/fanreg.asp" alt="會員登錄"><img border="0" src="../images/ico/ic0.gif" alt="會員登入" ></a></td>
+			<td><a href="http://online.cpbl.com.tw/GResult/LastGame.aspx" target="online"><img border="0" src="../images/ico/ic1.gif" alt="成績看板" ></td>
+<!--			<td id="menuitem2" OnMouseOver="mcMouseOverItem('menuitem2', 'menugroup2', 'belowleft', 0, 1, 0, null); " onMouseOut="mcMouseOutItem(event,'menuitem2', 'menugroup1', 'menugroup2');"><nobr><img border="0" src="../images/ico/ic1.gif" alt="成績看板" ></nobr></td>  -->
+			<td id="menuitem3" OnMouseOver="mcMouseOverItem('menuitem3', 'menugroup3', 'belowleft', 0, 1, 0, null); " onMouseOut="mcMouseOutItem(event,'menuitem3', 'menugroup1', 'menugroup3');"><nobr><img border="0" src="../images/ico/ic2.gif" alt="戰績" ></nobr></td>
+			<td id="menuitem4" OnMouseOver="mcMouseOverItem('menuitem4', 'menugroup4', 'belowleft', 0, 1, 0, null); " onMouseOut="mcMouseOutItem(event,'menuitem4', 'menugroup1', 'menugroup4');"><nobr><img border="0" src="../images/ico/ic3.gif" alt="記錄統計" ></nobr></td>
+			<td><a href="../standings/scoreqry.aspx"><img border="0" src="../images/ico/ic4.gif" alt="賽程" ></a></td>
+			<td id="menuitem5" OnMouseOver="mcMouseOverItem('menuitem5', 'menugroup5', 'belowleft', 0, 1, 0, null); " onMouseOut="mcMouseOutItem(event,'menuitem5', 'menugroup1', 'menugroup5');"><nobr><img border="0" src="../images/ico/ic5.gif" alt="新聞" ></nobr></td>
+			<td id="menuitem6" OnMouseOver="mcMouseOverItem('menuitem6', 'menugroup6', 'belowleft', 0, 1, 0, null); " onMouseOut="mcMouseOutItem(event,'menuitem6', 'menugroup1', 'menugroup6');"><nobr><img border="0" src="../images/ico/ic6.gif" alt="資訊" ></nobr></td>
+			<td id="menuitem7" OnMouseOver="mcMouseOverItem('menuitem7', 'menugroup7', 'belowleft', 0, 1, 0, null); " onMouseOut="mcMouseOutItem(event,'menuitem7', 'menugroup1', 'menugroup7');"><nobr><img border="0" src="../images/ico/ic7.gif" alt="球迷天地" ></nobr></td>
+			<td><a href="http://mvp.cpbl.com.tw/" alt="風雲總教頭" target="2006mvp"><img border="0" src="../images/ico/ic8.gif" alt="風雲總教頭" ></a></td>
+			<td><a href="http://kids.cpbl.com.tw/" target="kids"><img border="0" src="../images/ico/ic9.gif" alt="兒童版" ></a></td>
+			<td><img border="0" src="../images/ico/ic10.gif" alt="其他" usemap="#icon"></td>
+		</tr>
+	</table>
+<map name="icon">
+<area alt="設成首頁" coords="107,0,166,17" shape="rect" HREF="#" ONCLICK="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.cpbl.com.tw/');">
+<area alt="加入最愛" coords="171,1,226,17" shape="rect" HREF="javascript:favority()">
+</map>
+</td></tr>
+<tr valign=top align=middle><td background="../images/bg/bg2.gif" width="175" rowspan=2>
+<!---左邊區塊---->
+	<table border="0" cellspacing="0" cellpadding="0" width="160">
+	<tr><td width="160" colspan="2">
+	<!--會員登錄--->
+	<form name="loginform"  method="post" action="../include/Login.asp">
+	<input type="hidden" name="act" value="">
+	<img border="0" src="../images/hd/LoginHD.gif" alt="會員登入標題"></td></tr>
+	<tr bgcolor="#FFFFFF"><td align="center" colspan="2">帳號：<input type="text" name="UID" size="12" value=""></td></tr>
+	<tr bgcolor="#FFFFFF"><td align="center" colspan="2">密碼：<input type="password" name="UPW" size="12"></td></tr>
+	<tr bgcolor="#FFFFFF"><td align="right" width=50%><input type="image" border="0" src="../images/ico/login.gif" onClick="return login()" alt="登入"></td>
+		<td><input type="image" border="0" src="../images/ico/logout.gif" onClick="return logout()" alt="登出"></td>
+	</tr></form>
+
+	<!---球迷公投-->
+	
+<tr><td colspan=2 align=middle>
+<a href="/sports/2009writing/index.htm" target="2009writing"><img src="../images/ad/writing2009.gif" border=0 alt="徵文比賽活動專區"><br>
+<a href="http://class.ruten.com.tw/user/index00.php?c=&m=&o=&p=&s=cpbcshop" target="ruten"><img src="../images/ad/0610bid.gif" border=0 alt="競標活動"><br>
+<a href="http://pbmonthly.pixnet.net/blog/post/28099644" target="blog"><img src="../images/ad/327mag.gif" border=0 alt="Q版球星磁鐵"></a><br>
+<a href="http://store.pchome.com.tw/shopping_cpbl/" target="store"><img src="../images/ad/4teams.gif" border=0 alt="職棒商城紀念商品"></a><br>
+<a href="http://www.wretch.cc/blog/playercards" target="cards"><img src="../images/ad/banner-0114.gif" border=0 alt="2008中華職棒台灣第一卡"></a><br>
+</td></tr>	
+</table>
+
+</td>
+<td bgcolor="#e9e9e9" width=824><form name="Form1" method="post" action="Team_Hitter.aspx?Tno=E01&amp;page=1&amp;qyear=1990" id="Form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE4MTc1OTEwMTgPZBYCZg9kFhQCAQ8PFgIeCEltYWdlVXJsBRQuLi9pbWFnZXMvSEQvRTAxLmdpZmRkAgMPDxYCHgtOYXZpZ2F0ZVVybAUeLi4vdGVhbXMvVGVhbUJhc2UuYXNweD9Ubm89RTAxZGQCBQ8PFgIfAQUhLi4vdGVhbXMvVGVhbVBsYXllcnMuYXNweD9Ubm89RTAxZGQCBw8PFgIfAQUcLi4vdGVhbXMvVGVhbUFjdC5hc3A/VG5vPUUwMWRkAgkPDxYCHwEFIi4uL3RlYW1zL1RlYW1fUGl0Y2hlci5hc3B4P1Rubz1FMDFkZAILDw8WAh8BBSIuLi9zdGFuZGluZ3Mvc2NvcmVxcnkuYXNweD9Ubm89RTAxZGQCDQ8PFgIfAQUgLi4vU2NoZWR1bGUvR21fSGlzdC5hc3B4P1Rubz1FMDFkZAIPDw8WAh8BBSEuLi90ZWFtcy9UZWFtX2RlZmVuZC5hc3B4P1Rubz1FMDFkZAIRDw8WAh8BBSAuLi90ZWFtcy9UZWFtX3JlYzEwLmFzcHg/VG5vPUUwMWRkAhMPEGQPFhRmAgECAgIDAgQCBQIGAgcCCAIJAgoCCwIMAg0CDgIPAhACEQISAhMWFBAFBDIwMDkFBDIwMDlnEAUEMjAwOAUEMjAwOGcQBQQyMDA3BQQyMDA3ZxAFBDIwMDYFBDIwMDZnEAUEMjAwNQUEMjAwNWcQBQQyMDA0BQQyMDA0ZxAFBDIwMDMFBDIwMDNnEAUEMjAwMgUEMjAwMmcQBQQyMDAxBQQyMDAxZxAFBDIwMDAFBDIwMDBnEAUEMTk5OQUEMTk5OWcQBQQxOTk4BQQxOTk4ZxAFBDE5OTcFBDE5OTdnEAUEMTk5NgUEMTk5NmcQBQQxOTk1BQQxOTk1ZxAFBDE5OTQFBDE5OTRnEAUEMTk5MwUEMTk5M2cQBQQxOTkyBQQxOTkyZxAFBDE5OTEFBDE5OTFnEAUEMTk5MAUEMTk5MGcWAQITZGRhGc+q7L0qo2dpRFjVKJUVxvZjCg==" />
+
+<br><table border=0 cellpadding="0" cellspacing="0" bordercolor=808080  style='border-collapse: collapse'>
+			<tr valign=bottom><td rowspan=3>
+                <img id="img_TeamPic" src="../images/HD/E01.gif" border="0" />
+            </td>
+				<td>
+                    <a id="hpl_TeamBase" href="../teams/TeamBase.aspx?Tno=E01"><img src="../images/ico/t1.gif" border=0 alt="基本資料"></a><br>
+                    <a id="hpl_TeamPlayers" href="../teams/TeamPlayers.aspx?Tno=E01"><img src="../images/ico/t2.gif" border=0 alt="球員點將錄"></a><br>
+                    <a id="hpl_TeamAct" href="../teams/TeamAct.asp?Tno=E01"><img src="../images/ico/t3.gif" border=0 alt="球團活動"></a></td>
+				<td>
+                    <img src="../images/ico/t6-1.gif" border=0 alt="打擊整隊表"><br>
+                    <a id="hpl_Team_Pitcher" href="../teams/Team_Pitcher.aspx?Tno=E01"><img src="../images/ico/t7.gif" border=0 alt="投手整隊表"></a><br>
+                    <a id="hpl_scoreqry" href="../standings/scoreqry.aspx?Tno=E01"><img src="../images/ico/t8.gif" border=0 alt="本月賽程"></a></td>
+				<td>
+                    <a id="hpl_Gm_Hist" href="../Schedule/Gm_Hist.aspx?Tno=E01"><img src="../images/ico/t9.gif" border=0 alt="逐日戰績表"></a><br>
+                    <a id="hpl_Team_defend" href="../teams/Team_defend.aspx?Tno=E01"><img src="../images/ico/t10.gif" border=0 alt="守備整隊表"></a><br>
+                    <a id="hpl_Team_rec10" href="../teams/Team_rec10.aspx?Tno=E01"><img src="../images/ico/t11.gif" border=0 alt="最近10場成績"></a></td></tr>
+			</table>
+			<br>
+			<table width="760" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			    <td>
+		          <FONT face="新細明體">
+		          ◆ <b>請選擇年度：</b>
+				<select name="ddl_year" id="ddl_year">
+	<option value="2009">2009</option>
+	<option value="2008">2008</option>
+	<option value="2007">2007</option>
+	<option value="2006">2006</option>
+	<option value="2005">2005</option>
+	<option value="2004">2004</option>
+	<option value="2003">2003</option>
+	<option value="2002">2002</option>
+	<option value="2001">2001</option>
+	<option value="2000">2000</option>
+	<option value="1999">1999</option>
+	<option value="1998">1998</option>
+	<option value="1997">1997</option>
+	<option value="1996">1996</option>
+	<option value="1995">1995</option>
+	<option value="1994">1994</option>
+	<option value="1993">1993</option>
+	<option value="1992">1992</option>
+	<option value="1991">1991</option>
+	<option selected="selected" value="1990">1990</option>
+
+</select>
+				<div id="pal_view">
+	<table border="0" cellspacing="1" cellpadding="3" bgcolor="#ffffff" width="780" style="font-size:12px;BORDER-COLLAPSE:collapse;" class="Report_Table">
+		<tr class="Report_PagerStyle">
+			<td align="Right" bgcolor="white" colspan="14"><a href=Team_Hitter.aspx?Tno=E01&page=2&qyear=1990>Next&gt;&gt;</a></td>
+		</tr>
+		<tr class="Report_Header" align="center" bgcolor="#FFCD62">
+			<td width="60">球員</td>
+			<td><a href="Team_Hitter.aspx?page=1&amp;Tno=E01&amp;qyear=1990&amp;qfield=b_G">出賽數</a></td>
+			<td><a href="Team_Hitter.aspx?page=1&amp;Tno=E01&amp;qyear=1990&amp;qfield=b01">打席</a></td>
+			<td><a href="Team_Hitter.aspx?page=1&amp;Tno=E01&amp;qyear=1990&amp;qfield=b02">打數</a></td>
+			<td><a href="Team_Hitter.aspx?page=1&amp;Tno=E01&amp;qyear=1990&amp;qfield=b03">打點</a></td>
+			<td><a href="Team_Hitter.aspx?page=1&amp;Tno=E01&amp;qyear=1990&amp;qfield=b04">得分</a></td>
+			<td><a href="Team_Hitter.aspx?page=1&amp;Tno=E01&amp;qyear=1990&amp;qfield=b05">安打</a></td>
+			<td><a href="Team_Hitter.aspx?page=1&amp;Tno=E01&amp;qyear=1990&amp;qfield=b06">一壘安打</a></td>
+			<td><a href="Team_Hitter.aspx?page=1&amp;Tno=E01&amp;qyear=1990&amp;qfield=b07">二壘安打</a></td>
+			<td><a href="Team_Hitter.aspx?page=1&amp;Tno=E01&amp;qyear=1990&amp;qfield=b08">三壘安打</a></td>
+			<td><a href="Team_Hitter.aspx?page=1&amp;Tno=E01&amp;qyear=1990&amp;qfield=b09">全壘打</a></td>
+			<td><a href="Team_Hitter.aspx?page=1&amp;Tno=E01&amp;qyear=1990&amp;qfield=b10">壘打數</a></td>
+			<td><a href="Team_Hitter.aspx?page=1&amp;Tno=E01&amp;qyear=1990&amp;qfield=b11">雙殺打</a></td>
+			<td><a href="Team_Hitter.aspx?page=1&amp;Tno=E01&amp;qyear=1990&amp;qfield=b_AVG">打擊率</a></td>
+		</tr>
+		<tr class="Report_Item" bgcolor="#FFFFFF" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E002">洪 一 中</a></td>
+			<td>90</td>
+			<td>404</td>
+			<td>365</td>
+			<td>31</td>
+			<td>52</td>
+			<td>104</td>
+			<td>78</td>
+			<td>22</td>
+			<td>4</td>
+			<td>0</td>
+			<td>134</td>
+			<td>10</td>
+			<td>0.285</td>
+		</tr>
+		<tr class="Report_AlternatingItem" bgcolor="#FFF2D6" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E033">李 居 明</a></td>
+			<td>88</td>
+			<td>371</td>
+			<td>335</td>
+			<td>42</td>
+			<td>43</td>
+			<td>97</td>
+			<td>70</td>
+			<td>15</td>
+			<td>4</td>
+			<td>8</td>
+			<td>144</td>
+			<td>6</td>
+			<td>0.29</td>
+		</tr>
+		<tr class="Report_Item" bgcolor="#FFFFFF" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=B009">王 俊 郎</a></td>
+			<td>90</td>
+			<td>348</td>
+			<td>313</td>
+			<td>24</td>
+			<td>32</td>
+			<td>71</td>
+			<td>57</td>
+			<td>12</td>
+			<td>1</td>
+			<td>1</td>
+			<td>88</td>
+			<td>6</td>
+			<td>0.227</td>
+		</tr>
+		<tr class="Report_AlternatingItem" bgcolor="#FFF2D6" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E026">王 光 輝</a></td>
+			<td>79</td>
+			<td>337</td>
+			<td>310</td>
+			<td>45</td>
+			<td>47</td>
+			<td>106</td>
+			<td>73</td>
+			<td>23</td>
+			<td>1</td>
+			<td>9</td>
+			<td>158</td>
+			<td>8</td>
+			<td>0.342</td>
+		</tr>
+		<tr class="Report_Item" bgcolor="#FFFFFF" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E044">林 百 亨</a></td>
+			<td>86</td>
+			<td>338</td>
+			<td>310</td>
+			<td>34</td>
+			<td>31</td>
+			<td>82</td>
+			<td>63</td>
+			<td>14</td>
+			<td>0</td>
+			<td>5</td>
+			<td>111</td>
+			<td>10</td>
+			<td>0.265</td>
+		</tr>
+		<tr class="Report_AlternatingItem" bgcolor="#FFF2D6" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E019">帝波</a></td>
+			<td>85</td>
+			<td>353</td>
+			<td>305</td>
+			<td>49</td>
+			<td>57</td>
+			<td>93</td>
+			<td>59</td>
+			<td>20</td>
+			<td>4</td>
+			<td>10</td>
+			<td>151</td>
+			<td>2</td>
+			<td>0.305</td>
+		</tr>
+		<tr class="Report_Item" bgcolor="#FFFFFF" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E022">努那</a></td>
+			<td>75</td>
+			<td>283</td>
+			<td>268</td>
+			<td>25</td>
+			<td>25</td>
+			<td>64</td>
+			<td>52</td>
+			<td>8</td>
+			<td>3</td>
+			<td>1</td>
+			<td>81</td>
+			<td>8</td>
+			<td>0.239</td>
+		</tr>
+		<tr class="Report_AlternatingItem" bgcolor="#FFF2D6" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E001">吳 俊 達</a></td>
+			<td>71</td>
+			<td>294</td>
+			<td>257</td>
+			<td>11</td>
+			<td>43</td>
+			<td>65</td>
+			<td>55</td>
+			<td>8</td>
+			<td>2</td>
+			<td>0</td>
+			<td>77</td>
+			<td>4</td>
+			<td>0.253</td>
+		</tr>
+		<tr class="Report_Item" bgcolor="#FFFFFF" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E035">姚 百 川</a></td>
+			<td>56</td>
+			<td>176</td>
+			<td>158</td>
+			<td>11</td>
+			<td>11</td>
+			<td>25</td>
+			<td>24</td>
+			<td>1</td>
+			<td>0</td>
+			<td>0</td>
+			<td>26</td>
+			<td>4</td>
+			<td>0.158</td>
+		</tr>
+		<tr class="Report_AlternatingItem" bgcolor="#FFF2D6" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E032">吳 英 偉</a></td>
+			<td>60</td>
+			<td>168</td>
+			<td>151</td>
+			<td>18</td>
+			<td>15</td>
+			<td>38</td>
+			<td>29</td>
+			<td>6</td>
+			<td>2</td>
+			<td>1</td>
+			<td>51</td>
+			<td>1</td>
+			<td>0.252</td>
+		</tr>
+		<tr class="Report_Item" bgcolor="#FFFFFF" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E043">彭 裕 國</a></td>
+			<td>52</td>
+			<td>129</td>
+			<td>122</td>
+			<td>16</td>
+			<td>10</td>
+			<td>20</td>
+			<td>16</td>
+			<td>3</td>
+			<td>0</td>
+			<td>1</td>
+			<td>26</td>
+			<td>4</td>
+			<td>0.164</td>
+		</tr>
+		<tr class="Report_AlternatingItem" bgcolor="#FFF2D6" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E024">周 惠 盛</a></td>
+			<td>40</td>
+			<td>81</td>
+			<td>76</td>
+			<td>9</td>
+			<td>1</td>
+			<td>17</td>
+			<td>14</td>
+			<td>3</td>
+			<td>0</td>
+			<td>0</td>
+			<td>20</td>
+			<td>4</td>
+			<td>0.224</td>
+		</tr>
+		<tr class="Report_Item" bgcolor="#FFFFFF" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E025">李 文 傳</a></td>
+			<td>27</td>
+			<td>52</td>
+			<td>44</td>
+			<td>2</td>
+			<td>9</td>
+			<td>10</td>
+			<td>10</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>10</td>
+			<td>4</td>
+			<td>0.227</td>
+		</tr>
+		<tr class="Report_AlternatingItem" bgcolor="#FFF2D6" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E029">江 仲 豪</a></td>
+			<td>17</td>
+			<td>45</td>
+			<td>39</td>
+			<td>3</td>
+			<td>0</td>
+			<td>8</td>
+			<td>8</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>8</td>
+			<td>0</td>
+			<td>0.205</td>
+		</tr>
+		<tr class="Report_Item" bgcolor="#FFFFFF" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E009">黃 廣 琪</a></td>
+			<td>8</td>
+			<td>27</td>
+			<td>23</td>
+			<td>1</td>
+			<td>1</td>
+			<td>4</td>
+			<td>4</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>4</td>
+			<td>0</td>
+			<td>0.174</td>
+		</tr>
+		<tr class="Report_AlternatingItem" bgcolor="#FFF2D6" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E020">陳 琦 豐</a></td>
+			<td>6</td>
+			<td>17</td>
+			<td>14</td>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+			<td>3</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>3</td>
+			<td>0</td>
+			<td>0.214</td>
+		</tr>
+		<tr class="Report_Item" bgcolor="#FFFFFF" align="center">
+			<td><a href="../personal_Rec/pbat_personal.aspx?Pno=E021">派瑞</a></td>
+			<td>1</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>0</td>
+		</tr>
+	</table>
+
+</div></FONT>
+		         </td>
+			</tr>
+			</table><br>			
+		
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWFQKRqrvwCwKIi8mXCwKIi/3yAwKIi9GbBQKIi8X2DQKIi/mtAgKIi+2ICwKIi4HkAwKIi7XDCAKIi6m+AQKIi92VBgLM6LTjAwLM6KjeCALM6JznDQLM6LDCAgLM6KS5CwLM6NgUAszozPMIAszo4K4BAszolIoGAszoiOEOUI9rejQ8597BRiLoZYdTq8KThls=" /></form>
+<tr><td colspan=2  background="../images/bg/whiteline.gif" bgcolor="#014C8E" height="18" valign=bottom>
+<a href="#" id="mail" onclick="window.open('../html/Email.htm','mail','toolbar=no,location=no,menubar=no,status=no,resizable=no,scrollbars=no,width=421,height=291,left=0,top=0')"><font color="ffffff">聯絡我們</a>｜
+	<a href="#" id="CASE" onclick="window.open('../html/case.htm','case','toolbar=no,location=no,menubar=no,status=no,resizable=no,scrollbars=no,width=350,height=400,left=0,top=0')"><font color=ffffff>檢舉專線</font></a></font>
+</td></tr>
+<tr><td colspan=4 height=18 align=middle background="../images/bg/TopBG.gif">
+  <font color=#545454>《版權所有》中華職棒大聯盟，<font face=Arial>&copy; 1996-2009 Chinese Professional Baseball League. All rights reserved.</font></td></tr>
+</table>
+</body>
+</html>
+<style>
+.cssWebMenuGroup {background-color:#333333;border:1px;border-bottom-color:black;border-top-color:gray;border-left-color:gray;border-right-color:black;border-style:solid;filter:Alpha(Opacity=90);}
+.cssWebMenuItem {background-color:#333333;color:white;font-family:verdana;font-size:12px;padding:2px;padding-left:5px;padding-right:15px;border:0px;border-color:#3F3F3F;border-style:solid;cursor:hand;filter:Alpha(Opacity=90);}
+.cssWebMenuSubItem {background-color:#333333;color:white;font-family:verdana;font-size:12px;padding:2px;padding-left:5px;padding-right:15px;border:0px;border-color:#3F3F3F;border-style:solid;filter:Alpha(Opacity=90);}
+.cssWebMenuItemOver {background-color:#999999;color:white;font-family:verdana;font-size:12px;padding:2px;padding-left:5px;padding-right:15px;border:0px;border-color:3F3F3F;border-left-color:#000000;border-top-color:#000000;border-right-color:black;border-bottom-color:black;border-style:ridge;cursor:hand;}
+.cssWebMenuItemDown {background-color:#999999;color:yellow;font-family:verdana;font-size:12px;padding:2px;padding-left:5px;padding-right:15px;border:0px;border-color:3F3F3F;border-right-color:#000000;border-bottom-color:#000000;border-left-color:black;border-top-color:black;border-style:solid;cursor:hand;}
+</style>
+
+<!--戰績-->
+<table id="menugroup3" cellspacing="0" cellpadding="0" border="0" onmouseover="mcMouseOverGroup('menugroup3');" onmouseout="mcMouseOutGroup(event,'menugroup3', 'menuitem3', 'menugroup1')" style="z-index:999;position:absolute;visibility:hidden;z-index:999;left:0px;top:0px;">
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem11"><nobr><a href="../Score/FightScore.aspx" class="OptionSet"><font color=white>本季戰績</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem21"><nobr><a href="../Score/SpecialScore.aspx" class="OptionSet"><font color=white>特殊戰績</a></nobr></td></tr>
+</table>
+
+<!--記錄統計-->
+<table id="menugroup4" cellspacing="0" cellpadding="0" border="0" onmouseover="mcMouseOverGroup('menugroup4');" onmouseout="mcMouseOutGroup(event,'menugroup4', 'menuitem4', 'menugroup1')" style="z-index:999;position:absolute;visibility:hidden;z-index:999;left:0px;top:0px;">
+<tr><td class="cssWebMenuSubItem" id="menuitem31"><nobr><font color=yellow>▼ 本季記錄</nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem32"><nobr><a href="../Personal_Rec/RecList.aspx?CID=CPBL" class="OptionSet"><font color=white>各單項排行榜</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem3b"><nobr><a href="../stats/MonthMvp.aspx" class="OptionSet"><font color=white>單月MVP</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem33"><nobr><a href="../News/NewsOfWeek.asp" class="OptionSet"><font color=white>記錄特別報導</a></nobr></td></tr>
+<tr><td class="cssWebMenuSubItem" id="menuitem34"><nobr><font color=yellow>▼ 歷史記錄</nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem35"><nobr><a href="../Personal_Rec/ColRec_Qry.asp?Qtype=1" class="OptionSet"><font color=white>年度獎項得主</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem3A"><nobr><a href="../Score/ScoreRec.asp" class="OptionSet"><font color=white>歷年戰績</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem36"><nobr><a href="../Score/ChampRec.aspx" class="OptionSet"><font color=white>總冠軍賽戰績</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem37"><nobr><a href="../stats/pbat_total.aspx" class="OptionSet"><font color=white>全記錄查詢</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem38"><nobr><a href="../stats/pbat_year.aspx" class="OptionSet"><font color=white>歷年排行榜</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem39"><nobr><a href="../Score/all_player.asp" class="OptionSet"><font color=white>全球員點將錄</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem39"><nobr><a href="../stats/pbat_locano_total.aspx" class="OptionSet"><font color=white>守位別打擊成績</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem3a"><nobr><a href="../Personal_Rec/Homerun.aspx" class="OptionSet"><font color=white>歷年全壘打明細</a></nobr></td></tr>
+</table>
+
+<!--新聞-->
+<table id="menugroup5" cellspacing="0" cellpadding="0" border="0" onmouseover="mcMouseOverGroup('menugroup5');" onmouseout="mcMouseOutGroup(event,'menugroup5', 'menuitem5', 'menugroup1')" style="z-index:999;position:absolute;visibility:hidden;z-index:999;left:0px;top:0px;">
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem41"><nobr><a href="../news/allnews.asp" class="OptionSet"><font color=white>聯盟快訊</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem42"><nobr><font color=white>校園報導</a></nobr></td></tr>
+</table>
+
+<!--資訊-->
+<table id="menugroup6" cellspacing="0" cellpadding="0" border="0" onmouseover="mcMouseOverGroup('menugroup6');" onmouseout="mcMouseOutGroup(event,'menugroup6', 'menuitem6', 'menugroup1')" style="z-index:999;position:absolute;visibility:hidden;z-index:999;left:0px;top:0px;">
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem51"><nobr><a href="../personal_Rec/PlayerChg.aspx" class="OptionSet"><font color=white>球員異動</a></nobr></td></tr>   
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem51"><nobr><a href="../html/ticket.asp" class="OptionSet"><font color=white>票務資訊</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem52"><nobr><a href="../html/stadium.asp" class="OptionSet"><font color=white>球場介紹</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem53"><nobr><a href="http://online.cpbl.com.tw/rule/cpblrules.htm" class="OptinoSet" target=_blank><font color=white>棒球規則</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem54"><nobr><a href="../html/cpbl.asp" class="OptionSet"><font color=white>聯盟簡介</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem55"><nobr><a href="../News/CpblEvent.asp" class="OptionSet"><font color=white>職棒大事記</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem56"><nobr><a href="#" id="Questionnaire" class="OptionSet" onclick="window.open('/ad/Questionnaire/Provisions.htm','Questionnaire','toolbar=no,location=no,menubar=no,status=no,resizable=no,scrollbars=no,width=700,height=580,left=0,top=0')"><font color=white>比賽現場問卷調查申請</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem57"><nobr><font color=white>網站導覽</a></nobr></td></tr>
+</table>
+
+<!--球迷天地-->
+<table id="menugroup7" cellspacing="0" cellpadding="0" border="0" onmouseover="mcMouseOverGroup('menugroup7');" onmouseout="mcMouseOutGroup(event,'menugroup7', 'menuitem7', 'menugroup1')" style="z-index:999;position:absolute;visibility:hidden;z-index:999;left:0px;top:0px;">
+
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem61"><nobr><a href="../fans/discusMain.aspx" class="OptionSet"><font color=white>網際論壇</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem62"><nobr><a href="../Fans/Fanstalk.asp" class="OptionSet"><font color=white>留言板</a></nobr></td></tr>
+
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem63"><nobr><a href="http://store.pchome.com.tw/shopping_cpbl/" target="shop" class="OptionSet"><font color=white>職棒商城</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem64"><nobr><a href="../portrait/photo.asp" class="OptinSet"><font color=white>照片寫真</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem65"><nobr><a href="../Fans/Bcroom.asp" class="OptionSet"><font color=white>棒球教室</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem66"><nobr><a href="../sports/2008Allstar/Allstar.asp" class="OptionSet" target="allstar"><font color=white>2008明星賽</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem66"><nobr><a href="http://www.taiwanseries.com.tw/" class="OptionSet" target="taiwanseries"><font color=white>2008總冠軍賽</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem66"><nobr><a href="../sports/2008award/index.htm" class="OptionSet" target="award"><font color=white>2008頒獎典禮</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem66"><nobr><a href="../sports/2008AsiaSeries/Schedule.asp" class="OptionSet" target="AsiaSeries"><font color=white>2008亞洲職棒大賽</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem66"><nobr><a href="http://www.tabda.org.tw/2008-15th.html" target="tabda" class="OptionSet"><font color=white>2008關懷杯棒球錦標賽</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem66"><nobr><a href="../sports/2008BIP/index.htm" target="BIP" class="OptionSet"><font color=white>棒球工程論壇</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem66"><nobr><a href="#" onclick="window.open('../sports/2009pattern/index.asp','pattern','toolbar=no,location=no,menubar=no,status=no,resizable=no,scrollbars=yes,width=930,height=650,left=0,top=0')" class="OptionSet"><font color=white>球衣彩裝大賽</a></nobr></td></tr>
+
+<!--  <tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem66"><nobr><font color=white>線上記者會</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem67"><nobr><font color=white>單挑網迷</a></nobr></td></tr>
+<tr><td class="cssWebMenuItem" onmouseover="this.className='cssWebMenuItemOver'; " onmouseout="this.className='cssWebMenuItem'; " id="menuitem68"><nobr><font color=white>活動專區</a></nobr></td></tr>   -->
+</table>
