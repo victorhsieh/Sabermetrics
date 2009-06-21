@@ -35,11 +35,11 @@ class CSVStatReader
     def row_to_bbstat(header, row, stat_type)
         bbstat = BaseballStat.new
         stat = bbstat.send stat_type
-        header.zip(row).each do |x|
-            if stat.respond_to? x[0]
-                stat.set_stats(x[0] => x[1])
+        header.zip(row).each do |key,value|
+            if stat.has_stat? key
+                stat.set_stats(key => value)
             else
-                bbstat.set_attr(x[0], smart_type_casting(x[1]))
+                bbstat.set_attr(key, smart_type_casting(value))
             end
         end
         bbstat

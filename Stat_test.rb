@@ -45,9 +45,6 @@ class TestStat < Test::Unit::TestCase
         assert_in_delta(0.434, @batting.OBP, 0.0005)
         assert_in_delta(0.654, @batting.SLG, 0.0005)
         assert_in_delta(1.088, @batting.OPS, 0.0005)
-
-        @batting.IBB = 0
-        assert_equal(0, @batting.IBB)
     end
 
     def test_pitching
@@ -64,6 +61,12 @@ class TestStat < Test::Unit::TestCase
         assert_in_delta(0.973, @fielding.FPCT, 0.0005)
     end
 
+
+    def test_stat_attribute
+        @batting.IBB = 0
+        assert_equal(0, @batting.IBB)
+    end
+
     def test_player_attribute
         assert_equal('Foo Bar', @player.Name)
 
@@ -75,6 +78,12 @@ class TestStat < Test::Unit::TestCase
 
         @player.set_attr('League', 'CPBL')
         assert_equal('CPBL', @player.League)
+    end
+
+    def test_stat
+        assert(@batting.has_stat?(:HR))
+        assert(@batting.has_stat?(:SLG))
+        assert(!@batting.has_stat?(:NOT_THIS_ONE))
     end
 
     def test_delegate

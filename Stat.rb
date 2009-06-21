@@ -3,6 +3,18 @@ class BaseStat
         set_stats stats
     end
 
+    def set_stats(stats={})
+        stats.each_pair do |key, value|
+            key = to_canonical key.to_sym
+            instance_variable_set("@#{key}", value.to_f)
+        end
+    end
+
+    def has_stat?(name); self.class.has_stat? name.to_sym; end
+
+
+    private
+
     def self.inherited(derived)
         derived.class_eval {
             @abbr_map = {}
@@ -27,13 +39,9 @@ class BaseStat
         end
     end
 
-    def self.has_stat?(name)
-        @abbr_map.has_key? name
-    end
+    def self.stat(name); @abbr_map[name]; end
 
-    def self.stat(name)
-        @abbr_map[name]
-    end
+    def self.has_stat?(name); @abbr_map.has_key? name; end
 
     def to_canonical(name)
         if self.class.has_stat? name
@@ -42,13 +50,6 @@ class BaseStat
             name
         else
             nil
-        end
-    end
-
-    def set_stats(stats={})
-        stats.each_pair do |key, value|
-            key = to_canonical key.to_sym
-            instance_variable_set("@#{key}", value.to_f)
         end
     end
 
