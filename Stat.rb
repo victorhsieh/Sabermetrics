@@ -122,7 +122,6 @@ class PitchingStat < BaseStat
     def_stat :CGL, :completeGameLose
     def_stat :CS, :caughtStealing
     def_stat :ER, :earnedRun
-    def_stat :ERA, :earnedRunAverage
     def_stat :G, :gamesPlayed
     def_stat :GF, :gamesFinished
     def_stat :GIDP, :DP, :groundIntoDoublePlay
@@ -159,6 +158,7 @@ class PitchingStat < BaseStat
     def_stat :AVG, :opponentsBattingAverage do hit / battersFaced end # not precise
     def_stat :BB9, :walksPerNineInnings do baserunnersPer9Innings / inningPitched * 9 end
     def_stat :BF, :battersFaced do inningPitched * 3 + hit + baseOnBall + hitBatsmen end # + number of batters that reached base on error against the pitcher
+    def_stat :ERA, :earnedRunAverage do earnedRun / inningPitched * 9 end
     def_stat :GO_AO, :groundOutFlyOutRatio do groundOut / flyOut end
     def_stat :H9, :hitPerNineInnings do hit / inningPitched * 9 end
 #    def_stat :I_GS, :inningPerGamesStarted do inningPitched(as starter) / gameStarted end
