@@ -15,7 +15,7 @@ end
 
 class TestStat < Test::Unit::TestCase
     def setup
-        @player = BaseballStat.new
+        @player = BaseballStat.new(:Name => 'Foo Bar')
         @player.batting.set_stats(
             :G => 66, :PA => 279, :AB => 240, :H => 88, :H2B=> 17, :H3B => 2,
             :HR => 16, :RBI => 39, :SAC => 0, :SF => 6, :SO => 53, :BB => 28,
@@ -45,6 +45,9 @@ class TestStat < Test::Unit::TestCase
         assert_in_delta(0.434, @batting.OBP, 0.0005)
         assert_in_delta(0.654, @batting.SLG, 0.0005)
         assert_in_delta(1.088, @batting.OPS, 0.0005)
+
+        @batting.IBB = 0
+        assert_equal(0, @batting.IBB)
     end
 
     def test_pitching
@@ -59,6 +62,19 @@ class TestStat < Test::Unit::TestCase
         assert_equal(256, @fielding.PO)
         assert_equal(256, @fielding.putout)
         assert_in_delta(0.973, @fielding.FPCT, 0.0005)
+    end
+
+    def test_player_attribute
+        assert_equal('Foo Bar', @player.Name)
+
+        @player.Team = 'GoodTeam'
+        assert_equal('GoodTeam', @player.Team)
+
+        @player.set_attr(:Year, 2008)
+        assert_equal(2008, @player.Year)
+
+        @player.set_attr('League', 'CPBL')
+        assert_equal('CPBL', @player.League)
     end
 
     def test_delegate

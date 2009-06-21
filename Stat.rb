@@ -9,29 +9,55 @@ class BaseStat
         }
     end
 
-    def self.def_stat(abbr, stat, *aliases, &formula)
-        @abbr_map[abbr] = stat
+    def self.def_stat(*names, &formula)
+        stat = names.pop
         if block_given?
             define_method stat, formula
         else
             attr_reader stat
         end
-        alias_method abbr, stat
-        aliases.each {|name| alias_method name, stat}
+
+        alias_stat stat, names
     end
 
-    def self.to_canonical(name)
-        @abbr_map.has_key?(name) ? @abbr_map[name] : name
+    def self.alias_stat(stat, names)
+        names.each do |name|
+            alias_method name, stat
+            @abbr_map[name] = stat
+        end
+    end
+
+    def self.has_stat?(name)
+        @abbr_map.has_key? name
+    end
+
+    def self.stat(name)
+        @abbr_map[name]
+    end
+
+    def to_canonical(name)
+        if self.class.has_stat? name
+            self.class.stat name
+        elsif respond_to? name
+            name
+        else
+            nil
+        end
     end
 
     def set_stats(stats={})
         stats.each_pair do |key, value|
-            key = self.class.to_canonical key
-#use instance_set
-            eval "@#{key} = #{value}.to_f"
+            key = to_canonical key.to_sym
+            instance_variable_set("@#{key}", value.to_f)
         end
     end
 
+    def method_missing(name, *args)
+        if name.to_s.match(/=$/)
+            value = *args
+            set_stats(name.to_s.chop.to_sym => value)
+        end
+    end
 
     def do
         yield self
@@ -40,7 +66,7 @@ end
 
 class BattingStat < BaseStat
     def_stat :G, :game
-    def_stat :PA, :plateAppearance, :TPA, :totalPlateAppearance
+    def_stat :PA, :TPA, :plateAppearance, :totalPlateAppearance
     def_stat :AB, :atBase
     def_stat :H, :hit # do single + double + triple + homeRun end
 # may need to replace attr_reader with our own return-attr-if-exist-prior-to-function getter
@@ -49,7 +75,7 @@ class BattingStat < BaseStat
     def_stat :HR, :homeRun
     def_stat :GS, :grandSlam
     def_stat :RBI, :runsBattedIn
-    def_stat :SAC, :sacrificeBunt
+    def_stat :SAC, :SH, :sacrificeBunt
     def_stat :SF, :sacrificeFly
     def_stat :LOB, :leftOnBase
 
@@ -59,7 +85,7 @@ class BattingStat < BaseStat
     def_stat :IBB, :intentionalWalk
     def_stat :GO, :groundOut
     def_stat :AO, :flyOut
-    def_stat :GIDP, :groundIntoDoublePlay
+    def_stat :GIDP, :DP, :groundIntoDoublePlay
     def_stat :TP, :triplePlay
 
     def_stat :NP, :numberOfPitch
@@ -76,7 +102,6 @@ class BattingStat < BaseStat
 
     def_stat :AVG, :batAverage do hit / atBase end
     def_stat :OBP, :onBasePercentage do
-        # XXX intentionalWalks doesn't counts in MLB
         (hit + baseOnBall + hitByPitch + intentionalWalk) /
         (atBase + baseOnBall + hitByPitch + sacrificeFly + intentionalWalk)
     end
@@ -99,7 +124,7 @@ class PitchingStat < BaseStat
     def_stat :ERA, :earnedRunAverage
     def_stat :G, :gamesPlayed
     def_stat :GF, :gamesFinished
-    def_stat :GIDP, :groundIntoDoublePlay
+    def_stat :GIDP, :DP, :groundIntoDoublePlay
     def_stat :GO, :groundOut
     def_stat :GS, :gameStarted
     def_stat :GSH, :grandSlam
@@ -174,7 +199,20 @@ class BaseballStat # < BaseStat
     attr_accessor :batting, :pitching, :fielding
 
     # TODO switch hitter, utility man stat
-    def initialize()
+    def initialize(attr={})
         @batting, @pitching, @fielding = BattingStat.new, PitchingStat.new, FieldingStat.new
+        @attr = attr
+    end
+
+    def set_attr(name, value)
+        @attr[name.to_sym] = value
+    end
+
+    def method_missing(name, *args)
+        if name.to_s.match(/=$/)
+            set_attr(name.to_s.chop, *args)
+        else
+            @attr.has_key?(name) ? @attr[name] : nil
+        end
     end
 end
