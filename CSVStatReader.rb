@@ -14,6 +14,26 @@ class CSVStatReader
         read_csv_with_header(file, :batting, 'League,Team,ID,Name,Year,G,PA,AB,RBI,R,H,H2B,H3B,HR,TB,DP,SH,SF,BB,HBP,SO,SB,CS'.split(',')) {|bbstat| bbstat.batting.IBB = 0}
     end
 
+    def read_fielding(file)
+        read_csv_with_header(file, :fielding, 'Team,ID,Name,Year,Pos,G,PO,A,E,DP'.split(','))
+    end
+
+    def read_pitching(file)
+        read_csv_with_header(file, :pitching, 'League,Team,ID,Name,Year,G,PA,IP,GS,CG,ShO,SV,W,L,E,H,HR,BB,HBP,SO,WP,R,ER'.split(',')) do |bbstat|
+            bbstat.pitching.IP = self.class.fix_inning_rounding(bbstat.pitching.IP)
+        end
+    end
+
+    def self.fix_inning_rounding(ip)
+        decimal = ip - ip.floor
+        if decimal > 0.5
+            ip.floor + 2.0/3
+        elsif decimal > 0
+            ip.floor + 1.0/3
+        else
+            ip
+        end
+    end
 
     private
 
