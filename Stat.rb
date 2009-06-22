@@ -101,7 +101,7 @@ class BattingStat < BaseStat
     def_stat :XBH, :extraBaseHit do double + triple + homeRun end
 
 
-    def_stat :AVG, :batAverage do hit / atBase end
+    def_stat :AVG, :BA, :batAverage do hit / atBase end
     def_stat :OBP, :onBasePercentage do
         (hit + baseOnBall + hitByPitch + intentionalWalk) /
         (atBase + baseOnBall + hitByPitch + sacrificeFly + intentionalWalk)
