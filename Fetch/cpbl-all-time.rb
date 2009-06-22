@@ -31,21 +31,21 @@ end
 def collect_player_stat(page)
     stats = {}
     open(page, 'r') do |f|
-    begin
-        until f.eof?
-            type = _read_until(f, /images\/hd\/player(\d)\.gif/)
-            f.readline
-            _read_until f, /<\/tr>/
-            case type.to_i
-            when 1; kind = :pitching
-            when 2; kind = :batting
-            when 3; kind = :fielding
-            else; next
+        begin
+            until f.eof?
+                type = _read_until(f, /images\/hd\/player(\d)\.gif/)
+                f.readline
+                _read_until f, /<\/tr>/
+                case type.to_i
+                when 1; kind = :pitching
+                when 2; kind = :batting
+                when 3; kind = :fielding
+                else; next
+                end
+                stats[kind] = _read_personal_stat_by_row f
             end
-            stats[kind] = _read_personal_stat_by_row f
+        rescue EOFError
         end
-    rescue EOFError
-    end
     end
     stats
 end
