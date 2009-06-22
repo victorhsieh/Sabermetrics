@@ -38,4 +38,12 @@ class TestStat < Test::Unit::TestCase
         assert_equal(452, stats[1][3])
         assert_equal(2, stats.size)
     end
+
+    def test_pitcher_by_game_in_year
+        stats = CPBLStatExtractor::collect_pitcher_by_game_in_year('test/pitcher-by-game-in-year.html')
+        assert_equal('5/13', stats[1][0])
+        assert_equal(0.2, stats[3][6])
+        assert_equal('無', stats[0][3])
+        assert_equal(17, stats.size)
+    end
 end

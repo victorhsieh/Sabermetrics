@@ -36,6 +36,15 @@ def self.collect_fielding_detail(page)
     end
 end
 
+def self.collect_pitcher_by_game_in_year(page)
+    open(page, 'r') do |f|
+        read_until(f, /class="Report_Table_ppitch"/)
+        read_until(f, /<\/tr/)
+        read_until(f, /<\/tr/)
+        return read_personal_stats_of_rows(f)
+    end
+end
+
 private
 
 def self.read_until(f, pattern)
@@ -44,7 +53,13 @@ def self.read_until(f, pattern)
 end
 
 def self.smart_type_casting(value)
-    value.match(/^\d+$/) ? value.to_i : value
+    if value.match(/^\d+$/)
+        value.to_i
+    elsif value.match(/^\d+\.\d+$/)
+        value.to_f
+    else
+        value
+    end
 end
 
 def self.read_personal_stats_of_rows(f)
@@ -52,7 +67,9 @@ def self.read_personal_stats_of_rows(f)
     while f.readline.match(/<tr class="Report_.*Item"/)
         stat = []
         while f.readline.match(/<td>(.*)<\/td>/)
-            stat.push smart_type_casting $1
+            data = $1
+            data.gsub!(/<[^>]*>/, '')
+            stat.push smart_type_casting data
         end
         results.push stat
     end
