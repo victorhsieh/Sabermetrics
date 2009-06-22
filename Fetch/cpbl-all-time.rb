@@ -17,12 +17,23 @@ def self.collect_player_stat(page)
                 f.readline
                 read_until f, /<\/tr>/
                 kind = type_number_to_kind_symbol(type.to_i)
-                stats[kind] = read_personal_stat_by_row(f) if kind
+                if kind
+                    stats[kind] = read_personal_stats_of_rows(f)
+                    stats[kind].pop # drop the "total" line
+                end
             end
         rescue EOFError
         end
     end
     stats
+end
+
+def self.collect_fielding_detail(page)
+    open(page, 'r') do |f|
+        read_until(f, /class="Report_Table_pdf"/)
+        read_until(f, /<\/tr/)
+        return read_personal_stats_of_rows(f)
+    end
 end
 
 private
@@ -36,7 +47,7 @@ def self.smart_type_casting(value)
     value.match(/^\d+$/) ? value.to_i : value
 end
 
-def self.read_personal_stat_by_row(f)
+def self.read_personal_stats_of_rows(f)
     results = []
     while f.readline.match(/<tr class="Report_.*Item"/)
         stat = []
@@ -45,7 +56,6 @@ def self.read_personal_stat_by_row(f)
         end
         results.push stat
     end
-    results.pop # drop the "total" line
     results
 end
 

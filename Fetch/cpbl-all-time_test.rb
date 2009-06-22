@@ -31,4 +31,11 @@ class TestStat < Test::Unit::TestCase
         assert_equal(9, stats[:fielding][4][4])
         assert_equal(7, stats[:fielding].size)
     end
+
+    def test_fielding_detail
+        stats = CPBLStatExtractor::collect_fielding_detail('test/fielding_detail.html')
+        assert_equal(2, stats[0][2])
+        assert_equal(452, stats[1][3])
+        assert_equal(2, stats.size)
+    end
 end
