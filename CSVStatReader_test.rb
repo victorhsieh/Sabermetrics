@@ -40,6 +40,8 @@ class TestCSVStatReader < Test::Unit::TestCase
         @reader.read_pitching('test/pitching.csv') 
         stats = @reader.stats
 
+        assert_equal(3, stats[-1].pitching.SHO)
+
         result_stats = []
         float_result_stats = []
         stats.select {|p| p.Name == '賈西'} .each do |p|
@@ -49,19 +51,6 @@ class TestCSVStatReader < Test::Unit::TestCase
         end
         assert_equal([[1990, 19], [1991, 18], [1992, 7], [1996, 2], [1997, 1], [1998, 1]].sort, result_stats.sort)
         assert_float_array_in_delta([3.01, 1.89, 2.09, 3.69, 2.66, 2.63].sort, float_result_stats.sort, 0.005)
-    end
-
-    def test_inning_rounding
-        assert_in_delta(0, CSVStatReader.fix_inning_rounding(0), 0.0000001)
-        assert_in_delta(10, CSVStatReader.fix_inning_rounding(10), 0.0000001)
-        assert_in_delta(1.0/3, CSVStatReader.fix_inning_rounding(0.33), 0.0000001)
-        assert_in_delta(1.0/3, CSVStatReader.fix_inning_rounding(0.33), 0.0000001)
-        assert_in_delta(1.0/3, CSVStatReader.fix_inning_rounding(0.34), 0.0000001)
-        assert_in_delta(1.0/3, CSVStatReader.fix_inning_rounding(0.3), 0.0000001)
-        assert_in_delta(2.0/3, CSVStatReader.fix_inning_rounding(0.6), 0.0000001)
-        assert_in_delta(1+2.0/3, CSVStatReader.fix_inning_rounding(1.66), 0.0000001)
-        assert_in_delta(2+2.0/3, CSVStatReader.fix_inning_rounding(2.67), 0.0000001)
-        assert_in_delta(3+2.0/3, CSVStatReader.fix_inning_rounding(3.7), 0.0000001)
     end
 
     def assert_float_array_in_delta(expected, actual, epsilon)
