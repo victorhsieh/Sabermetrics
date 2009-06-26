@@ -8,6 +8,14 @@ def self.collect_players_from_team_in_year(page)
     end
 end
 
+def self.collect_players_stats_from_team_in_year(page)
+    open(page, 'r') do |f|
+        read_until(f, /class="Report_Header"/)
+        read_until(f, /<\/tr/)
+        return read_personal_stats_of_rows(f)
+    end
+end
+
 def self.collect_player_stat(page)
     stats = {}
     open(page, 'r') do |f|

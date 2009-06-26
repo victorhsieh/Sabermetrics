@@ -10,6 +10,18 @@ class TestStat < Test::Unit::TestCase
         assert_equal([], CPBLStatExtractor::collect_players_from_team_in_year('test/08-empty-pitcher.html'))
     end
 
+    def test_collect_players_stats_in_year_team
+        stats = CPBLStatExtractor::collect_players_stats_from_team_in_year('test/93-eagle-pitcher.html')
+        assert_equal(37, stats[0][1])
+        assert_equal(11, stats[1][5])
+        assert_equal(11, stats.size)
+
+        stats = CPBLStatExtractor::collect_players_stats_from_team_in_year('test/90-elephant-hitter.html')
+        assert_equal(404, stats[0][2])
+        assert_equal(97, stats[1][6])
+        assert_equal(17, stats.size)
+    end
+
     def test_collect_hitter_stat
         stats = CPBLStatExtractor::collect_player_stat('test/hitter_career.html')
         assert_equal(4, stats[:batting][0][0])
