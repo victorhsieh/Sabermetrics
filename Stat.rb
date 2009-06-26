@@ -131,6 +131,7 @@ class PitchingStat < BaseStat
     def_stat :H, :hit
     def_stat :HB, :hitBatsmen
     def_stat :HLD, :hold
+    def_stat :HLDO, :holdOpportunity
     def_stat :HR, :homeRun
     def_stat :IBB, :intentionalWalk
     def_stat :IP, :inningPitched
@@ -142,7 +143,9 @@ class PitchingStat < BaseStat
     def_stat :PK, :pickoff
     def_stat :R, :run
     def_stat :RW, :reliefWin
+    def_stat :SAC, :SH, :sacrificeBunt
     def_stat :SB, :stolenBase
+    def_stat :SF, :sacrificeFly
     def_stat :SHO, :shutout
     def_stat :SO, :strikeOut
     def_stat :SV, :save
