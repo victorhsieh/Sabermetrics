@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-module NumberUtils
+module BaseballUtils
     # Fix inning notation of two cases:
     #  1. 1.66 -> 1.6666...
     #  2. 1.2  -> 1.6666...

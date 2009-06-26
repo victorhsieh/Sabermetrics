@@ -2,7 +2,7 @@
 
 require 'csv'
 require 'Stat'
-require 'NumberUtils'
+require 'BaseballUtils'
 
 class CSVStatReader
     attr_accessor :stats
@@ -21,7 +21,7 @@ class CSVStatReader
 
     def read_pitching(file)
         read_csv_with_header(file, :pitching, 'League,Team,ID,Name,Year,G,PA,IP,GS,CG,SHO,SV,W,L,E,H,HR,BB,HBP,SO,WP,R,ER'.split(',')) do |bbstat|
-            bbstat.pitching.IP = NumberUtils::fix_inning_rounding(bbstat.pitching.IP)
+            bbstat.pitching.IP = BaseballUtils::fix_inning_rounding(bbstat.pitching.IP)
         end
     end
 
