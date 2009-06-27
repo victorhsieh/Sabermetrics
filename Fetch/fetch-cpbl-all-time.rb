@@ -3,6 +3,7 @@
 require 'open-uri'
 require 'CPBLStatExtractor'
 require '../Stat'
+require '../BaseballUtils'
 
 
 $TeamName = {
@@ -14,7 +15,6 @@ $TeamCode = $TeamName.invert
 
 def fetch_team_players(team, year, kind)
     players = CPBLStatExtractor::collect_players_from_team_in_year("http://www.cpbl.com.tw/teams/Team_#{kind}.aspx?Tno=#{team}&qyear=#{year}")
-    puts "#{team} in #{year} has #{players.size} #{kind}"
     players
 end
 
@@ -52,8 +52,8 @@ end
 
 def fetch_player(id)
     cached("data/raw/personal/#{id}") {
-        stat = CPBLStatExtractor::collect_player_stat("http://www.cpbl.com.tw/personal_Rec/pbat_personal.aspx?Pno=#{id}")
-        stat2 = CPBLStatExtractor::collect_player_stat("http://www.cpbl.com.tw/personal_Rec/pbat_personal.aspx?Pno=#{id}&pbatpage=2")
+        stat = CPBLStatExtractor::collect_player_career_stat("http://www.cpbl.com.tw/personal_Rec/pbat_personal.aspx?Pno=#{id}")
+        stat2 = CPBLStatExtractor::collect_player_career_stat("http://www.cpbl.com.tw/personal_Rec/pbat_personal.aspx?Pno=#{id}&pbatpage=2")
         if stat2.has_key? :pitching
             stat[:pitching2] = stat2[:pitching]
         elsif stat2.has_key? :batting
@@ -71,15 +71,18 @@ end
 #    v.zip(*vectors).maps {|xs| p xs}
 #end
 
-def fetch_fielding_detail(id)
+def fetch_fielding_position_detail(id)
     cached("data/raw/fielding/#{id}") {
         results = []
         stat = fetch_player(id)
-        return [] unless stat[:fileding]
+        unless stat[:fielding]
+            p "Player #{id} has no fielding stat"
+            return [] 
+        end
 
         stat[:fielding].map {|stat| stat[0] + 1989}.each {|year|
             stat = CPBLStatExtractor::collect_fielding_detail("http://www.cpbl.com.tw/personal_Rec/pdf_detail.aspx?pbyear=#{year}&Pno=#{id}")
-            results.push stat unless stat.empty?
+            results.push *stat unless stat.empty?
         }
         sleep 0.5
         results
@@ -103,8 +106,8 @@ def cpbl_all_players
     }
 end
 
-def fetch_pitcher_stat_by_game_in_year(id)
-    cached("data/raw/pitcher_by_game/#{id}") {
+def fetch_pitcher_stat(id)
+    cached("data/raw/pitcher/#{id}") {
         stat = fetch_player(id)
         if stat.has_key?(:pitching)
             result = {:page1 => [], :page2 => []}
@@ -123,6 +126,27 @@ def fetch_pitcher_stat_by_game_in_year(id)
     }
 end
 
+def get_pitcher_stat(id)
+    stats = fetch_pitcher_stat(id)
+    translate_stats_pair(stats, \
+            'Name,G,PA,AB,RBI,R,H,H1B,H2B,H3B,HR,TB,DP', \
+            'Name,SH,SF,BB,IBB,TOTAL_BB,SO,SB,CS') {|s|
+        s[:HBP] = s[:TOTAL_BB] - s[:BB] - s[:IBB]
+        s.delete(:TOTAL_BB)
+        s.delete(:H1B)
+    }
+end
+
+def get_personal_fielding_detail(id)
+# TODO
+#    position_details = fetch_fielding_position_detail(id)
+end
+
+def get_personal_fielding(id)
+    stats = fetch_player(id)[:fielding]
+    translate_stats(stats, 'Year,Team,G,TC,PO,A,E,DP,TP,PB,CS,SB')
+end
+
 def fetch_player_stats_by_team_year(dir, kind, team, year)
     cached("data/raw/#{dir}/#{team}-#{year}") {
         stats = {}
@@ -133,10 +157,56 @@ def fetch_player_stats_by_team_year(dir, kind, team, year)
     }
 end
 
-def fetch_pitcher_stats_by_team_year(team, year)
-    fetch_player_stats_by_team_year("team_pitching", "Pitcher", team, year)
+def csv_to_syms(csv)
+    csv.split(',').map {|x| x.empty? ? nil : x.to_sym}
 end
 
-def fetch_batter_stats_by_team_year(team, year)
-    fetch_player_stats_by_team_year("team_batting", "Hitter", team, year)
+def merge_csv_and_stats(csv, stats)
+    stats.map {|stat| Hash[csv_to_syms(csv).zip(stat)]}
+end
+
+def fix_stat(stat)
+    stat[:Name].gsub!(/ /, '') if stat.has_key? :Name
+    stat.delete(nil)
+    stat
+end
+
+def translate_stats(stats, header, additional={})
+    merge_csv_and_stats(header, stats).map {|stat|
+        s = fix_stat(stat.merge additional)
+        yield s if block_given?
+        s
+    }
+end
+
+def translate_stats_pair(stats, header1, header2, additional={})
+    merge_csv_and_stats(header1, stats[:page1]).zip(
+            merge_csv_and_stats(header2, stats[:page2])).map {|s1,s2|
+        yield s = fix_stat(s1.merge s2.merge additional)
+        s
+    }
+end
+
+def get_batter_stats_by_team_year(team, year)
+    stats = fetch_player_stats_by_team_year("team_batting", "Hitter", team, year)
+    translate_stats_pair(stats,
+            'Name,G,PA,AB,RBI,R,H,H1B,H2B,H3B,HR,TB,DP',
+            'Name,SH,SF,BB,IBB,TOTAL_BB,SO,SB,CS', \
+            {:Year => year, :Team => team}) {|s|
+        s[:HBP] = s[:TOTAL_BB] - s[:BB] - s[:IBB]
+        s.delete(:TOTAL_BB)
+        s.delete(:H1B)
+    }
+end
+
+def get_pitcher_stats_by_team_year(team, year)
+    stats = fetch_player_stats_by_team_year("team_pitching", "Pitcher", team, year)
+    translate_stats_pair(stats,
+            'Name,G,GS,HLDO,SVO,W,L,TIE,SV,SVO_SV,HLD,,CG,SHO,NOBB',
+            'Name,IP,PA,NP,H,HR,SAC,SF,BB,IBB,HBP,SO,WP,BK,R,ER', \
+            {:Year => year, :Team => team}) {|s|
+        s[:SVO] = s[:SV] + s[:SVO_SV]
+        s[:IP] = BaseballUtils::fix_inning_rounding(s[:IP])
+        s.delete(:SVO_SV)
+    }
 end
