@@ -23,7 +23,7 @@ class TestStat < Test::Unit::TestCase
     end
 
     def test_collect_hitter_stat
-        stats = CPBLStatExtractor::collect_player_stat('test/hitter_career.html')
+        stats = CPBLStatExtractor::collect_player_career_stat('test/hitter_career.html')
         assert_equal(4, stats[:batting][0][0])
         assert_equal(90, stats[:batting][0][2])
         assert_equal(5, stats[:batting].size)
@@ -34,7 +34,7 @@ class TestStat < Test::Unit::TestCase
     end
 
     def test_collect_pitcher_stat
-        stats = CPBLStatExtractor::collect_player_stat('test/pitcher_career.html')
+        stats = CPBLStatExtractor::collect_player_career_stat('test/pitcher_career.html')
         assert_equal(26, stats[:pitching][0][2])
         assert_equal(12, stats[:pitching][5][7])
         assert_equal(7, stats[:pitching].size)

@@ -16,7 +16,8 @@ def self.collect_players_stats_from_team_in_year(page)
     end
 end
 
-def self.collect_player_stat(page)
+# Remove this?
+def self.collect_player_career_stat(page)
     stats = {}
     open(page, 'r') do |f|
         begin
