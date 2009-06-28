@@ -18,23 +18,6 @@ def fetch_team_players(team, year, kind)
     players
 end
 
-def cached(filename, &b)
-    if File.exists? filename
-        puts "cache hit! #{filename}"
-        File.open(filename, 'r') do |f|
-            return Marshal.load(f)
-        end
-    else
-        result = b.call
-        if result
-            File.open(filename, 'w') do |f|  
-                Marshal.dump(result, f)  
-            end
-        end
-        return result
-    end
-end
-
 def fix_it(filename, &b)
     data = nil
     if File.exists? filename
@@ -51,7 +34,7 @@ def fix_it(filename, &b)
 end
 
 def fetch_player(id)
-    cached("data/raw/personal/#{id}") {
+    BaseballUtils::cached("data/raw/personal/#{id}") {
         stat = CPBLStatExtractor::collect_player_career_stat("http://www.cpbl.com.tw/personal_Rec/pbat_personal.aspx?Pno=#{id}")
         stat2 = CPBLStatExtractor::collect_player_career_stat("http://www.cpbl.com.tw/personal_Rec/pbat_personal.aspx?Pno=#{id}&pbatpage=2")
         if stat2.has_key? :pitching
@@ -67,7 +50,7 @@ def fetch_player(id)
 end
 
 def fetch_fielding_position_detail(id)
-    cached("data/raw/fielding/#{id}") {
+    BaseballUtils::cached("data/raw/fielding/#{id}") {
         results = []
         stat = fetch_player(id)
         unless stat[:fielding]
@@ -85,7 +68,7 @@ def fetch_fielding_position_detail(id)
 end
 
 def cpbl_all_players
-    cached('data/players.data') {
+    BaseballUtils::cached('data/players.data') {
         all_players = []
         $TeamName.each_key {|team|
             1990.upto(2009) {|year|
@@ -102,7 +85,7 @@ def cpbl_all_players
 end
 
 def fetch_pitcher_stat(id)
-    cached("data/raw/pitcher/#{id}") {
+    BaseballUtils::cached("data/raw/pitcher/#{id}") {
         stat = fetch_player(id)
         if stat.has_key?(:pitching)
             result = {:page1 => [], :page2 => []}
@@ -147,7 +130,7 @@ def get_personal_fielding(id)
 end
 
 def fetch_player_stats_by_team_year(dir, kind, team, year)
-    cached("data/raw/#{dir}/#{team}-#{year}") {
+    BaseballUtils::cached("data/raw/#{dir}/#{team}-#{year}") {
         stats = {}
         stats[:page1] = CPBLStatExtractor::collect_players_stats_from_team_in_year("http://www.cpbl.com.tw/teams/Team_#{kind}.aspx?Tno=#{team}&page=1&qyear=#{year}")
         stats[:page2] = CPBLStatExtractor::collect_players_stats_from_team_in_year("http://www.cpbl.com.tw/teams/Team_#{kind}.aspx?Tno=#{team}&page=2&qyear=#{year}")

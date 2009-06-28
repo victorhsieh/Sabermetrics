@@ -15,5 +15,22 @@ module BaseballUtils
         end
     end
 
-    module_function :fix_inning_rounding
+    def cached(filename, &b)
+        if File.exists? filename
+            puts "cache hit! #{filename}"
+            File.open(filename, 'r') do |f|
+                return Marshal.load(f)
+            end
+        else
+            result = b.call
+            if result
+                File.open(filename, 'w') do |f|  
+                    Marshal.dump(result, f)  
+                end
+            end
+            return result
+        end
+    end
+
+    module_function :fix_inning_rounding, :cached
 end
