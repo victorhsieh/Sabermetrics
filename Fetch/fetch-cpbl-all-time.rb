@@ -14,8 +14,25 @@ $TeamName = {
 $TeamCode = $TeamName.invert
 
 def fetch_team_players(team, year, kind)
-    players = CPBLStatExtractor::collect_players_from_team_in_year("http://www.cpbl.com.tw/teams/Team_#{kind}.aspx?Tno=#{team}&qyear=#{year}")
-    players
+    BaseballUtils::cached("data/raw/players/#{team}-{#{year}-#{kind}.data") {
+        CPBLStatExtractor::collect_players_from_team_in_year("http://www.cpbl.com.tw/teams/Team_#{kind}.aspx?Tno=#{team}&qyear=#{year}")
+    }
+end
+
+def cpbl_all_players
+    BaseballUtils::cached('data/players.data') {
+        all_players = []
+        $TeamName.each_key {|team|
+            1990.upto(2009) {|year|
+                hitters = fetch_team_players(team, year, 'Hitter')
+                all_players.push *hitters unless hitters.empty?
+
+                pitchers = fetch_team_players(team, year, 'Pitcher')
+                all_players.push *pitchers unless hitters.empty?
+            }
+        }
+        all_players.sort.uniq
+    }
 end
 
 def fetch_player(id)
@@ -49,22 +66,6 @@ def fetch_fielding_position_detail(id)
         }
         sleep 0.5
         results
-    }
-end
-
-def cpbl_all_players
-    BaseballUtils::cached('data/players.data') {
-        all_players = []
-        $TeamName.each_key {|team|
-            1990.upto(2009) {|year|
-                hitters = fetch_team_players(team, year, 'Hitter')
-                all_players.push *hitters unless hitters.empty?
-
-                pitchers = fetch_team_players(team, year, 'Pitcher')
-                all_players.push *pitchers unless hitters.empty?
-            }
-        }
-        all_players.uniq!
     }
 end
 
