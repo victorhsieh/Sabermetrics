@@ -90,8 +90,8 @@ def fetch_pitcher_stat(id)
 end
 
 def get_pitcher_stat(id)
-    stats = fetch_pitcher_stat(id)
-    translate_stats_pair(stats, \
+    translate_stats_pair(
+            fetch_pitcher_stat(id),
             'Name,G,PA,AB,RBI,R,H,H1B,H2B,H3B,HR,TB,DP', \
             'Name,SH,SF,BB,IBB,TOTAL_BB,SO,SB,CS') {|s|
         s[:HBP] = s[:TOTAL_BB] - s[:BB] - s[:IBB]
@@ -101,17 +101,16 @@ def get_pitcher_stat(id)
 end
 
 def get_personal_fielding_detail(id)
-    stats = fetch_fielding_position_detail(id)
-    translate_stats(stats, 'Year,Pos,G,TC,PO,A,E,DP,TP,PB,CS,SB') {|s|
+    translate_stats(
+            fetch_fielding_position_detail(id),
+            'Year,Pos,G,TC,PO,A,E,DP,TP,PB,CS,SB') {|s|
         s[:Year] += 1989
     }
 end
 
 def get_personal_fielding(id)
-    stats = fetch_player(id)[:fielding]
-    translate_stats(stats, 'Year,Team,G,TC,PO,A,E,DP,TP,PB,CS,SB') {|s|
-        s[:Year] += 1989
-    }
+    translate_stats(fetch_player(id)[:fielding],
+            'Year,Team,G,TC,PO,A,E,DP,TP,PB,CS,SB') {|s| s[:Year] += 1989 }
 end
 
 def fetch_player_stats_by_team_year(dir, kind, team, year)
@@ -155,8 +154,8 @@ def translate_stats_pair(stats, header1, header2, additional={})
 end
 
 def get_batter_stats_by_team_year(team, year)
-    stats = fetch_player_stats_by_team_year("team_batting", "Hitter", team, year)
-    translate_stats_pair(stats,
+    translate_stats_pair(
+        fetch_player_stats_by_team_year("team_batting", "Hitter", team, year),
             'Name,G,PA,AB,RBI,R,H,H1B,H2B,H3B,HR,TB,DP',
             'Name,SH,SF,BB,IBB,TOTAL_BB,SO,SB,CS', \
             {:Year => year, :Team => team}) {|s|
@@ -167,8 +166,8 @@ def get_batter_stats_by_team_year(team, year)
 end
 
 def get_pitcher_stats_by_team_year(team, year)
-    stats = fetch_player_stats_by_team_year("team_pitching", "Pitcher", team, year)
-    translate_stats_pair(stats,
+    translate_stats_pair(
+        fetch_player_stats_by_team_year("team_pitching", "Pitcher", team, year),
             'Name,G,GS,HLDO,SVO,W,L,TIE,SV,SVO_SV,HLD,,CG,SHO,NOBB',
             'Name,IP,PA,NP,H,HR,SAC,SF,BB,IBB,HBP,SO,WP,BK,R,ER', \
             {:Year => year, :Team => team}) {|s|
