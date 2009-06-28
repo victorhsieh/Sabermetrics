@@ -19,7 +19,7 @@ def fetch_team_players(team, year, kind)
     }
 end
 
-def cpbl_all_players
+def all_players
     BaseballUtils::cached('data/players.data') {
         all_players = []
         $TeamName.each_key {|team|
