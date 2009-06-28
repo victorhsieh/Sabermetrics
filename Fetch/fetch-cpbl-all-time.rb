@@ -66,11 +66,6 @@ def fetch_player(id)
     }
 end
 
-#def sum_vectors_group_by(column, vectors)
-#    v = vectors.shift
-#    v.zip(*vectors).maps {|xs| p xs}
-#end
-
 def fetch_fielding_position_detail(id)
     cached("data/raw/fielding/#{id}") {
         results = []
@@ -138,13 +133,17 @@ def get_pitcher_stat(id)
 end
 
 def get_personal_fielding_detail(id)
-# TODO
-#    position_details = fetch_fielding_position_detail(id)
+    stats = fetch_fielding_position_detail(id)
+    translate_stats(stats, 'Year,Pos,G,TC,PO,A,E,DP,TP,PB,CS,SB') {|s|
+        s[:Year] += 1989
+    }
 end
 
 def get_personal_fielding(id)
     stats = fetch_player(id)[:fielding]
-    translate_stats(stats, 'Year,Team,G,TC,PO,A,E,DP,TP,PB,CS,SB')
+    translate_stats(stats, 'Year,Team,G,TC,PO,A,E,DP,TP,PB,CS,SB') {|s|
+        s[:Year] += 1989
+    }
 end
 
 def fetch_player_stats_by_team_year(dir, kind, team, year)

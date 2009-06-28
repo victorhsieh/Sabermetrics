@@ -36,9 +36,10 @@ class TestStat < Test::Unit::TestCase
     end
 
     def test_fetch_personal_fielding_detail_of_multi_position
-        stats = get_personal_fielding_detail('A013')
-#        y2007 = stats.select {|s| s.Year == 2007}
-#        assert_equal(5, y2007.size)
+        stats = get_personal_fielding_detail('A013').select {|s| s[:Year] == 2007}
+        assert_equal(5, stats.size)
+        assert_equal(3, stats[1][:G])
+        assert_equal(24, stats[4][:PO])
     end
 
     def test_fetch_personal_fielding_detail_in_year
@@ -47,8 +48,8 @@ class TestStat < Test::Unit::TestCase
         assert_equal(18, stats[0][:G])
         assert_equal(3, stats[5][:G])
         assert_equal(19, stats[6][:G])
-        assert_equal(20, stats[5][:Year])
-        assert_equal(20, stats[6][:Year])
+        assert_equal(2009, stats[5][:Year])
+        assert_equal(2009, stats[6][:Year])
         assert_equal(0, stats[6][:SB])
         assert_equal(1, stats[0][:DP])
         assert_equal(1, stats[3][:DP])
