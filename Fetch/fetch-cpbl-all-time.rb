@@ -18,21 +18,6 @@ def fetch_team_players(team, year, kind)
     players
 end
 
-def fix_it(filename, &b)
-    data = nil
-    if File.exists? filename
-        puts "cache hit! #{filename}"
-        File.open(filename, 'r') do |f|
-            data = Marshal.load(f)
-        end
-
-        b.call(data)
-        File.open(filename, 'w') do |f|  
-            Marshal.dump(data, f)  
-        end 
-    end
-end
-
 def fetch_player(id)
     BaseballUtils::cached("data/raw/personal/#{id}") {
         stat = CPBLStatExtractor::collect_player_career_stat("http://www.cpbl.com.tw/personal_Rec/pbat_personal.aspx?Pno=#{id}")
@@ -79,7 +64,6 @@ def cpbl_all_players
                 all_players.push *pitchers unless hitters.empty?
             }
         }
-#        all_players.delete 'C035'
         all_players.uniq!
     }
 end
