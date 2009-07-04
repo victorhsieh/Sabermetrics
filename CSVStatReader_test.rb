@@ -46,7 +46,6 @@ class TestCSVStatReader < Test::Unit::TestCase
         float_result_stats = []
         stats.select {|p| p.Name == '賈西'} .each do |p|
             result_stats.push [p.Year, p.pitching.GS]
-            p([p.pitching.ER, p.pitching.IP]) if p.Year == 1997
             float_result_stats.push p.pitching.ERA
         end
         assert_equal([[1990, 19], [1991, 18], [1992, 7], [1996, 2], [1997, 1], [1998, 1]].sort, result_stats.sort)
