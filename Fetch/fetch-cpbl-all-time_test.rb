@@ -44,10 +44,9 @@ class TestStat < Test::Unit::TestCase
 
     def test_fetch_personal_fielding_detail_in_year
         stats = get_personal_fielding('A037')
-        assert_equal(7, stats.size)
         assert_equal(18, stats[0][:G])
         assert_equal(3, stats[5][:G])
-        assert_equal(19, stats[6][:G])
+        assert_equal('統一', stats[6][:Team])
         assert_equal(2009, stats[5][:Year])
         assert_equal(2009, stats[6][:Year])
         assert_equal(0, stats[6][:SB])
