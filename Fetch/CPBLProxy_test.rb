@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -Ku
 
 require 'test/unit'
-require 'fetch-cpbl-all-time'
+require 'CPBLProxy'
 
 class TestStat < Test::Unit::TestCase
     def setup
